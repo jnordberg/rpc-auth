@@ -31,7 +31,7 @@ ci-test: node_modules reports
 		--report-dir reports \
 		mocha --require ts-node/register \
 		--reporter mocha-junit-reporter \
-		--reporter-options mochaFile=./reports/junit.xml \
+		--reporter-options mochaFile=./reports/units/junit.xml \
 		test/*.ts
 
 .PHONY: lint
