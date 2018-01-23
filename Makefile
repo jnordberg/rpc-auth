@@ -16,7 +16,7 @@ reports:
 .PHONY: coverage
 coverage: node_modules reports
 	nyc -r html -r text -e .ts -i ts-node/register \
-		--report-dir reports \
+		--report-dir reports/coverage \
 		mocha --reporter nyan --require ts-node/register test/*.ts
 
 .PHONY: test
@@ -28,10 +28,10 @@ ci-test: node_modules reports
 	nsp check
 	tslint -p tsconfig.json -c tslint.json
 	nyc -r lcov -e .ts -i ts-node/register \
-		--report-dir reports \
+		--report-dir reports/coverage \
 		mocha --require ts-node/register \
 		--reporter mocha-junit-reporter \
-		--reporter-options mochaFile=./reports/units/junit.xml \
+		--reporter-options mochaFile=./reports/unit-tests/junit.xml \
 		test/*.ts
 
 .PHONY: lint
