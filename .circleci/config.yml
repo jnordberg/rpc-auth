@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: node:8-alpine
     steps:
-      - run: apk add --no-cache make bash git yarn
+      - run: apk add --no-cache make bash
       - checkout
       - restore_cache:
           keys:
@@ -13,18 +13,19 @@ jobs:
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
-            - node_modules
+            - ~/project/node_modules
           key: node8-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
       - store_test_results:
           path: ~/project/reports
       - store_artifacts:
           path: ~/project/reports
+          destination: /
   node9:
     docker:
       - image: node:9-alpine
     steps:
-      - run: apk add --no-cache make bash git yarn
+      - run: apk add --no-cache make bash
       - checkout
       - restore_cache:
           keys:
@@ -33,13 +34,14 @@ jobs:
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
-            - node_modules
+            - ~/project/node_modules
           key: node9-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
       - store_test_results:
           path: ~/project/reports
       - store_artifacts:
           path: ~/project/reports
+          destination: /
 workflows:
   version: 2
   build:
