@@ -20,7 +20,7 @@ jobs:
           path: ~/project/reports
       - store_artifacts:
           path: ~/project/reports
-          destination: /
+          destination: reports
   node9:
     docker:
       - image: node:9-alpine
@@ -41,7 +41,7 @@ jobs:
           path: ~/project/reports
       - store_artifacts:
           path: ~/project/reports
-          destination: /
+          destination: reports
 workflows:
   version: 2
   build:
